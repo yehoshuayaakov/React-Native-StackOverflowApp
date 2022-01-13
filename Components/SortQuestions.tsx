@@ -32,7 +32,7 @@ const SortQuestions : React.FC<Props> = props => {
         <View style={styles.buttonRow}>
             <Text style={{ marginRight: 10, color: props.lightBG ? 'black': 'lightgrey'  }}> Sort Questions by...</Text>
             
-             <TouchableOpacity onPress={orderByDate}>
+            <TouchableOpacity onPress={orderByDate}>
                  <Text style={selectedSort === ButtonEnums.date  ? styles.selectedButton : styles.button}>Date</Text>
             </TouchableOpacity> 
 

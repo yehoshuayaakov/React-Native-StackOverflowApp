@@ -5,7 +5,7 @@ import {
   FlatList,
   Text,
   StyleSheet,
-  TouchableNativeFeedback,
+  TouchableHighlight,
 } from "react-native";
 
 export type Props = {
@@ -45,7 +45,7 @@ const QuestionCard: React.FC<Props> = props => {
         extraData={props.questions}
         keyExtractor={item => item.question_id.toLocaleString()}
         renderItem={({ item, index }) => (
-          <TouchableNativeFeedback onPress={() => goToQuestion(item.link)}>
+          <TouchableHighlight underlayColor="#DDDDDD" onPress={() => goToQuestion(item.link)}>
             <View style={styles.card}>
               <Text
                 style={[
@@ -79,7 +79,7 @@ const QuestionCard: React.FC<Props> = props => {
                 </Text>
               </View>
             </View>
-          </TouchableNativeFeedback>
+          </TouchableHighlight>
         )}
       />
     </View>

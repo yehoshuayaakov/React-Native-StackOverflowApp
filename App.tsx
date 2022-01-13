@@ -62,7 +62,6 @@ export default function App() {
   return (
     <View>
       <View style={lightBG ? styles.backgroundColor : styles.backgroundColor2}>
-    
         <ShowAnswers 
         visible={visible}
         link={link}
@@ -77,8 +76,7 @@ export default function App() {
             onValueChange={() => setLightBG(!lightBG)}
             value={lightBG}
           />
-        </View>
-          
+        </View> 
         <View style={styles.profileContainer}>
           <Text style={lightBG ?  styles.titleLightBG : styles.titleDarkBG}>Stack Overflow Posts!!!!!!</Text>
           <InputRow
@@ -87,9 +85,11 @@ export default function App() {
             fetchData={fetchData}
             lightBG={lightBG}
             />
-         
-            {loading &&<ActivityIndicator  size = 'large' color='green'/>}
-          
+
+          {loading && <View style = {styles.indicatorContainer}>
+                <ActivityIndicator  size = 'large' color='green'/>
+          </View>
+          }
           {!foundUser && <Text>No User Found</Text>}
           {user && (
             <View>
@@ -153,6 +153,9 @@ const styles = StyleSheet.create({
     marginTop: 50,
     flexDirection: "row",
     justifyContent: "flex-end",
-   
   },
+  indicatorContainer: {
+    marginTop: 100
+  
+  }
 });

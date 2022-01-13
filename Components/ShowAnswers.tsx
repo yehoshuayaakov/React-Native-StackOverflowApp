@@ -27,7 +27,6 @@ const ShowAnswers: React.FC<Props> = props => {
         source={{ uri: props.link }}
         onLoadEnd={() => props.setLoading(false)}
       />
-
       <Button
         title="Go Back"
         onPress={() => props.setVisible(false)}
