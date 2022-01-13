@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native'
-const ProfileInfo = (props) =>{
+import User from '../models/userModel'
+
+export type Props= {
+  user: User;
+  lightBG: boolean;
+}
+const ProfileInfo: React.FC<Props> = (props) =>{
 return (
 <View style={styles.profileRow}>
                   <View >
@@ -10,9 +16,9 @@ return (
                     />
                   </View>
                   <View style={styles.profileDetails}>
-                    <Text style={[styles.optBox, props.lightBG ? styles.text1 : styles.text2]}>User Name: {props.user.display_name}</Text>
-                    <Text style={[styles.optBox, props.lightBG ? styles.text1 : styles.text2]}>Reputation: {props.user.reputation}</Text>
-                    <Text style={[styles.optBox, props.lightBG ? styles.text1 : styles.text2]}>Accept Rate: {props.user.accept_rate}</Text>
+                    <Text style={ props.lightBG ? styles.text1 : styles.text2}>User Name: {props.user.display_name}</Text>
+                    <Text style={ props.lightBG ? styles.text1 : styles.text2}>Reputation: {props.user.reputation}</Text>
+                    <Text style={ props.lightBG ? styles.text1 : styles.text2}>Accept Rate: {props.user.accept_rate}</Text>
                   </View>
                 </View>
 )

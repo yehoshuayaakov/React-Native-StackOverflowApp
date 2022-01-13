@@ -1,25 +1,33 @@
 import React from "react";
+import Question from '../models/questionModel'
 import {
   View,
   FlatList,
   Text,
   StyleSheet,
   TouchableNativeFeedback,
-  Linking
 } from "react-native";
 
-const QuestionCard = props => {
-  const goToQuestion = link => {
-    //  Linking.openURL(link)
+export type Props = {
+  questions: Question[]; 
+  setLink: (link: string)=> void; 
+  setVisible: (visible: boolean)=> void;
+  lightBG: boolean;
+  setLoading: (loading: boolean)=> void;
+}
+
+const QuestionCard: React.FC<Props> = props => {
+  // console.log(props.questions)
+  const goToQuestion = (link: string) => {
+    props.setLoading(true);
     props.setLink(link);
     props.setVisible(true);
   };
-  const getWrittenDate = dateInt => {
+  const getWrittenDate = (dateInt: number) => {
     var date = new Date(dateInt * 1000);
     return date.toUTCString().slice(0, -13);
   };
-  const colorSchemeSwitch = `props.lightBG ? styles.lightBGText : styles.darkBGText`;
-  //  console.log('quest',props.questions)
+
   return (
     <View style={styles.container}>
       {props.questions.length > 0 && (
@@ -35,7 +43,7 @@ const QuestionCard = props => {
       <FlatList
         data={props.questions}
         extraData={props.questions}
-        keyExtractor={item => item.question_id}
+        keyExtractor={item => item.question_id.toLocaleString()}
         renderItem={({ item, index }) => (
           <TouchableNativeFeedback onPress={() => goToQuestion(item.link)}>
             <View style={styles.card}>
@@ -59,11 +67,11 @@ const QuestionCard = props => {
                 )}
                 {item.view_count !== 1 ? (
                   <Text style={styles.secondaryText}>
-                    {item.answer_count} views
+                    {item.view_count} views
                   </Text>
                 ) : (
                   <Text style={styles.secondaryText}>
-                    {item.answer_count} view
+                    {item.view_count} view
                   </Text>
                 )}
                 <Text style={styles.secondaryTextDate}>
@@ -115,7 +123,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flex: 1,
     marginTop: 7,
-    // backgroundColor: 'red',
     marginLeft: 15
   },
   container: {
